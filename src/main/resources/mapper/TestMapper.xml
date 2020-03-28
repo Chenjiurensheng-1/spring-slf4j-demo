@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.TestMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.mapper.Test">
+    <id column="user_uid" jdbcType="VARCHAR" property="userUid" />
+    <result column="create_date" jdbcType="DATE" property="createDate" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="update_date" jdbcType="DATE" property="updateDate" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="user_mobile" jdbcType="VARCHAR" property="userMobile" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="user_pwd" jdbcType="VARCHAR" property="userPwd" />
+    <result column="user_birthday" jdbcType="DATE" property="userBirthday" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    user_uid, create_date, create_user, status, update_date, update_user, user_mobile, 
+    user_name, user_pwd, user_birthday
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_test
+    where user_uid = #{userUid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_test
+    where user_uid = #{userUid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.mapper.Test">
+    insert into t_test (user_uid, create_date, create_user, 
+      status, update_date, update_user, 
+      user_mobile, user_name, user_pwd, 
+      user_birthday)
+    values (#{userUid,jdbcType=VARCHAR}, #{createDate,jdbcType=DATE}, #{createUser,jdbcType=VARCHAR}, 
+      #{status,jdbcType=TINYINT}, #{updateDate,jdbcType=DATE}, #{updateUser,jdbcType=VARCHAR}, 
+      #{userMobile,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{userPwd,jdbcType=VARCHAR}, 
+      #{userBirthday,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.mapper.Test">
+    insert into t_test
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userUid != null">
+        user_uid,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="userMobile != null">
+        user_mobile,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="userPwd != null">
+        user_pwd,
+      </if>
+      <if test="userBirthday != null">
+        user_birthday,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userUid != null">
+        #{userUid,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=DATE},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=DATE},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="userMobile != null">
+        #{userMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPwd != null">
+        #{userPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="userBirthday != null">
+        #{userBirthday,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.mapper.Test">
+    update t_test
+    <set>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=DATE},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=DATE},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="userMobile != null">
+        user_mobile = #{userMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPwd != null">
+        user_pwd = #{userPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="userBirthday != null">
+        user_birthday = #{userBirthday,jdbcType=DATE},
+      </if>
+    </set>
+    where user_uid = #{userUid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.mapper.Test">
+    update t_test
+    set create_date = #{createDate,jdbcType=DATE},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      update_date = #{updateDate,jdbcType=DATE},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      user_mobile = #{userMobile,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR},
+      user_pwd = #{userPwd,jdbcType=VARCHAR},
+      user_birthday = #{userBirthday,jdbcType=DATE}
+    where user_uid = #{userUid,jdbcType=VARCHAR}
+  </update>
+  <sql id="Search_Criteria">
+    <bind name="name" value="condition['name']" ></bind>
+    <bind name="mobile" value="condition['mobile']" ></bind>
+  </sql>
+  <select id="searchByCriteriaCount" resultType="java.lang.Integer">
+    <include refid="Search_Criteria" />
+    select 
+    count(1)
+    from t_test
+    <trim prefix="WHERE" prefixOverrides="AND">
+       <if test="name != null and name!=''" >
+          and name like CONCAT('%',#{name},'%')
+       </if>
+       <if test="mobile != null" >
+          and mobile = #{mobile}
+       </if>
+    </trim>
+  </select>
+  <select id="searchByCriteria" resultMap="BaseResultMap">
+    <include refid="Search_Criteria" />
+    select 
+    <include refid="Base_Column_List" />
+    from t_test
+    <trim prefix="WHERE" prefixOverrides="AND">
+       <if test="name != null and name!=''" >
+          and name like CONCAT('%',#{name},'%')
+       </if>
+       <if test="mobile != null" >
+          and mobile = #{mobile}
+       </if>
+    </trim>
+     limit #{limitStart},#{pageSize}
+  </select>
+</mapper>
